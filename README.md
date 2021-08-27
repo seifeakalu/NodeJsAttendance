@@ -7,19 +7,7 @@ This Application is a Rest Apis for creating, retrieving, updating & deleting st
 #### clone the project
 
 
-#### Add table with `Customers.sql` file to your database
 
-#### Insall dependencies
-
-```
- npm install
-```
-
-#### Run the server
-
-
-node server.js
-```
 
 #### To Testing Application Open `http.rest` file
 

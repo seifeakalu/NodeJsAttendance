@@ -1,11 +1,10 @@
 const Admin = require("../models/admin.model");
 const crypto = require("crypto");
-// create and save a new customer
+
 exports.create = (req, res) => {
-  // validate request
+ 
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
 
-  // create new user
   const admin = new Admin({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -13,7 +12,7 @@ exports.create = (req, res) => {
     password: generateHash(req.body.password),
   });
 
-  // save question in the database
+  
   Admin.create(admin, (err, data) => {
     if (err)
       res.status(500).send({
@@ -32,7 +31,7 @@ function generateHash(password) {
 
   return hashedStr;
 }
-// retrieve all question from the database
+
 exports.findAll = (req, res) => {
   Admin.getAll((err, data) => {
     if (err)
@@ -60,7 +59,6 @@ exports.findOne = (req, res) => {
   });
 };
 
-// update a question identified by the customerId in the request
 exports.login = (req, res) => {
   // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
@@ -85,7 +83,6 @@ exports.login = (req, res) => {
   });
 };
 
-// update a question identified by the customerId in the request
 exports.update = (req, res) => {
   // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
@@ -109,7 +106,6 @@ exports.update = (req, res) => {
   });
 };
 
-// delete a question with the specified customerId in the request
 exports.delete = (req, res) => {
   const { adminId } = req.params;
 

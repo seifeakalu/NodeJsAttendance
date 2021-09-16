@@ -1,9 +1,6 @@
 const YearOf = require("../models/year_of.model");
-// create and save a new customer
 exports.create = (req, res) => {
-  // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
-  // create new student
   const year_of = new YearOf({
     year_date: req.body. year_date,
     description: req.body.description,
@@ -11,7 +8,6 @@ exports.create = (req, res) => {
    
   });
   if (req.session.AdminLogged) {
-  // save question in the database
   YearOf.create(year_of, (err, data) => {
     if (err) {
       res.status(500).send({
@@ -22,8 +18,6 @@ exports.create = (req, res) => {
   });
 }
 };
-
-// retrieve all question from the database
 exports.findAll = (req, res) => {
   if (req.session.AdminLogged) {
   YearOf.getAll((err, data) => {
@@ -36,7 +30,6 @@ exports.findAll = (req, res) => {
 }
 };
 
-// find a single quetion with the customerId
 exports.findOne = (req, res) => {
   if (req.session.AdminLogged) {
   const { streamId } = req.params;
@@ -55,12 +48,8 @@ exports.findOne = (req, res) => {
 }
 };
 
-// update a question identified by the customerId in the request
-
-// update a question identified by the customerId in the request
 exports.update = (req, res) => {
   if (req.session.AdminLogged) {
-  // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
 
   const { streamId } = req.params;
@@ -68,7 +57,6 @@ exports.update = (req, res) => {
 
   YearOf.updateById(streamId, stream, (err, data) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res
             .status(404)
@@ -82,8 +70,6 @@ exports.update = (req, res) => {
   });
 }
 };
-
-// delete a question with the specified customerId in the request
 exports.delete = (req, res) => {
   if (req.session.AdminLogged) {
   const { streamId } = req.params;

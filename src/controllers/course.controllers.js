@@ -1,25 +1,19 @@
 const Course = require("../models/course.model");
 
-// create and save a new customer
 exports.create = (req, res) => {
-  // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
 
-  // create new question
   const course = new Course({
     title: req.body.title,
     description: req.body.description,
   });
 
-  // save question in the database
   Course.create(course, (err, data) => {
     if (err) res.status(500).send({ message: err.message || "Some error occurred while creating the customer." });
     else
     res.send({ message: "Course created successfully!", data });
   });
 };
-
-// retrieve all question from the database
 
   exports.findAll = (req, res) => {
     if (req.session.AdminLogged) {
@@ -66,8 +60,6 @@ exports.create = (req, res) => {
   }
 };
 
-
-// find a single quetion with the customerId
 exports.findOne = (req, res) => {
   if (req.session.AdminLogged) {
   const { courseId } = req.params;
@@ -84,10 +76,8 @@ exports.findOne = (req, res) => {
 }
 };
 
-// update a question identified by the customerId in the request
 exports.update = (req, res) => {
   if (req.session.AdminLogged) {
-  // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
 
   const { courseId } = req.params;
@@ -95,7 +85,6 @@ exports.update = (req, res) => {
 
   Course.updateById(courseId, course, (err, data) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res.status(404).send({ message: `Not found customer with id ${courseId}` })
         : res.status(500).send({ message: `Could not update customer with id ${courseId}` });
@@ -114,14 +103,13 @@ exports.findAllCourse = (req, res) => {
   });
 }
 };
-// delete a question with the specified customerId in the request
+
 exports.delete = (req, res) => {
   if (req.session.AdminLogged) {
   const { courseId } = req.params;
 
   Course.remove(courseId, (err) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res.status(404).send({ message: `Not found customer with id ${courseId}` })
         : res.status(500).send({ message: `Could not delete customer with id ${courseId}` });

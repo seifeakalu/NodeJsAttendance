@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
   });
 };
 
-// find a single quetion with the customerId
+
 exports.findOne = (req, res) => {
   const { adminId } = req.params;
   Admin.findById(adminId, (err, data) => {
@@ -92,7 +92,7 @@ exports.update = (req, res) => {
 
   Admin.updateById(adminId, admin, (err, data) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
+     
       err.result === "not_found"
         ? res
             .status(404)
@@ -111,7 +111,6 @@ exports.delete = (req, res) => {
 
   Admin.remove(adminId, (err) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res
             .status(404)
@@ -134,7 +133,6 @@ exports.isAutorized = (req, resp) => {
 };
 exports.logout = (req, resp) => {
   if (req.session.AdminLogged) {
-    console.log("i am in");
     req.session.destroy();
     resp.clearCookie("expressSessionId"); // clean up!
     return resp.json({ msg: "logging you out" });

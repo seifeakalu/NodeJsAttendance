@@ -1,9 +1,7 @@
 const Stream = require("../models/stream.model");
-// create and save a new customer
 exports.create = (req, res) => {
-  // validate request
+
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
-  // create new student
   const stream = new Stream({
     name: req.body.name,
     description: req.body.description,
@@ -13,7 +11,6 @@ exports.create = (req, res) => {
     semister_id: req.body.semister_id,
   });
   if (req.session.AdminLogged) {
-  // save question in the database
   Stream.create(stream, (err, data) => {
     if (err) {
       res.status(500).send({
@@ -25,7 +22,6 @@ exports.create = (req, res) => {
 }
 };
 
-// retrieve all question from the database
 exports.findAll = (req, res) => {
   if (req.session.AdminLogged) {
   const { page } = req.params;
@@ -82,13 +78,12 @@ exports.getAllStream = (req, res) => {
    });
   }
  };
-// find a single quetion with the customerId
+
 exports.findOne = (req, res) => {
   if (req.session.AdminLogged) {
   const { streamId } = req.params;
   Stream.findById(streamId, (err, data) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res
             .status(404)
@@ -101,12 +96,8 @@ exports.findOne = (req, res) => {
 }
 };
 
-// update a question identified by the customerId in the request
-
-// update a question identified by the customerId in the request
 exports.update = (req, res) => {
   if (req.session.AdminLogged) {
-  // validate request
   if (!req.body) res.status(400).send({ message: "Content can not be empty!" });
 
   const { streamId } = req.params;
@@ -114,7 +105,6 @@ exports.update = (req, res) => {
 
   Stream.updateById(streamId, stream, (err, data) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res
             .status(404)
@@ -129,14 +119,12 @@ exports.update = (req, res) => {
 }
 };
 
-// delete a question with the specified customerId in the request
 exports.delete = (req, res) => {
   if (req.session.AdminLogged) {
   const { streamId } = req.params;
 
   Stream.remove(streamId, (err) => {
     if (err) {
-      // eslint-disable-next-line no-unused-expressions
       err.result === "not_found"
         ? res
             .status(404)

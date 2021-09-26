@@ -4,8 +4,9 @@ This Application is a Rest Apis for creating, retrieving, updating & deleting st
 
 # Getting Started
 
-#### clone the project
-
+#### Clone the project, import the database from config file
+#### Go to project directory open your  terminal and type  npm install
+#### To run the application type node server.js
 
 
 

@@ -10,12 +10,8 @@ This Application is a Rest Apis for creating, retrieving, updating & deleting st
 
 
 
-#### To Testing Application Open `http.rest` file
+#### Then test the application file go to routs and check the available route
 
-# Route & Action
-
-
-.
 
 # DEPENDENCIES
 
@@ -28,5 +24,6 @@ This Application is a Rest Apis for creating, retrieving, updating & deleting st
   This is a node.js driver for mysql. It is written in JavaScript, does not require compiling, and is 100% MIT licensed.
 
 - ### BodyParser [download from npm](https://www.npmjs.com/package/body-parser)
-
-  Node.js body parsing middleware.
+  
+  Express body-parser is an npm library used to process data sent through an HTTP request body. 
+  It exposes four express middlewares for parsing text, JSON, url-encoded and   raw data set through an HTTP request body

@@ -10,7 +10,7 @@ This Application is a Rest Apis for creating, retrieving, updating & deleting st
 
 
 
-#### Then test the application file go to routs and check the available route
+#### Then to test the application file go to routes and check the available route
 
 
 # DEPENDENCIES
